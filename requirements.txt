@@ -1,0 +1,7 @@
+datatrove[io,processing]
+transformers
+tokenizers
+datasets
+torch
+tqdm
+huggingface_hub
