@@ -28,3 +28,13 @@ pipeline = [
         max_tokens_per_file = 100 * 1024 * 1024, 
     ),
 ]
+
+if __name__ == "__main__": 
+    executor = LocalPipelineExecutor(
+        pipeline = pipeline, # Pipepline
+        tasks = 4,           # CPU cores 
+        workers = 4
+    )
+    print("Starting the Pipeline...")
+    executor.run()
+    print(f"Done! Check your tokens in: {OUTPUT_PATH}")
