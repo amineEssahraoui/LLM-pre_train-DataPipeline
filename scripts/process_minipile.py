@@ -6,7 +6,7 @@ from datatrove.pipeline.writers import JsonlWriter
 # General parameters 
 DATASET_NAME = "JeanKaddour/minipile"
 TOKENIZER_NAME = "core42/jais-13b-chat"
-OUTPUT_PATH = "./output/tokenized_data"
+OUTPUT_PATH = "./output/samples_data"
 
 os.makedirs(OUTPUT_PATH, exist_ok=True)
 
