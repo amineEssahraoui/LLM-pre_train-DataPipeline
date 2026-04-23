@@ -1,13 +1,9 @@
 import os
-import sys
-import io
 from datatrove.executor import LocalPipelineExecutor
 from datatrove.pipeline.readers import JsonlReader
 from datatrove.pipeline.tokens import DocumentTokenizer
 
-# Use utf-8 encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+os.environ["PYTHONIOENCODING"] = "utf-8"
 
 # Configuration 
 DATASET_NAME = "minipile" # Our dataset 
