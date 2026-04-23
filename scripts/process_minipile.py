@@ -1,40 +1,33 @@
 import os
 from datatrove.executor import LocalPipelineExecutor
 from datatrove.pipeline.readers import HuggingFaceDatasetReader
-from datatrove.pipeline.tokenizers import DocumentTokenizer
 from datatrove.pipeline.writers import JsonlWriter
 
 # General parameters 
-DATASET_NAME = "JeanKaddour/minipile"   # Miniple dataset
-TOKENIZER_NAME = "core42/jais-13b-chat" # Jais tokenizer
-OUTPUT_PATH = "./output/tokenized_data" # Folder to store tokenized data 
+DATASET_NAME = "JeanKaddour/minipile"
+TOKENIZER_NAME = "core42/jais-13b-chat"
+OUTPUT_PATH = "./output/tokenized_data"
 
-# Create output directory if it doesn't exist
 os.makedirs(OUTPUT_PATH, exist_ok=True)
 
-# Piplene 
 pipeline = [
-    # Read data 
     HuggingFaceDatasetReader(
-        dataset = DATASET_NAME, 
-        dataset_options = {"split" : "train"}, 
-        limit = 1000,   # Use 1000 lines for faster testing
+        dataset=DATASET_NAME,
+        dataset_options={"split": "train"},
+        limit=1000,
     ),
-
-    # Tokenizer parameters
-    DocumentTokenizer(
-        output_folder = OUTPUT_PATH,
-        tokenizer_name_or_path = TOKENIZER_NAME, 
-        max_tokens_per_file = 100 * 1024 * 1024, 
+    JsonlWriter(
+        output_folder=OUTPUT_PATH,
     ),
 ]
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     executor = LocalPipelineExecutor(
-        pipeline = pipeline, # Pipepline
-        tasks = 4,           # CPU cores 
-        workers = 4
+        pipeline=pipeline,
+        tasks=4,
+        workers=4,
+        start_method="spawn",  # Windows compatible
     )
     print("Starting the Pipeline...")
     executor.run()
-    print(f"Done! Check your tokens in: {OUTPUT_PATH}")
+    print(f"Done! Check output in: {OUTPUT_PATH}")
