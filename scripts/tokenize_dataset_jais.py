@@ -1,7 +1,7 @@
 import os
 from datatrove.executor import LocalPipelineExecutor
 from datatrove.pipeline.readers import JsonlReader
-from datatrove.pipeline.tokenizers import DocumentTokenizer
+from datatrove.pipeline.tokens import DocumentTokenizer
 
 # Configuration 
 DATASET_NAME = "minipile" # Our dataset 
