@@ -23,6 +23,7 @@ pipeline = [
     # Read the local JSONL files
     JsonlReader(
         data_folder=INPUT_PATH,
+        file_encoding="utf-8",
     ),
     
     # Tokenize the text using Jais and save as Binary Indexed files
