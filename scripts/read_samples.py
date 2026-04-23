@@ -3,7 +3,7 @@ import json
 import os
 
 # Data path 
-file_path = "./output/tokenized_data/00000.jsonl.gz"
+file_path = "./output/samples_data/00000.jsonl.gz"
 
 # Check if file_path already exists
 if not os.path.exists(path=file_path):
@@ -16,7 +16,7 @@ else:
             data = json.loads(line)
             print(f"Example {i+1}")
             # Read only the first 200 characters
-            print(f"Text : {data['text'][:200]}...")
+            print(f"Text : {data['text'][:500]}...")
             print("-" * 30)
             # Only 10 examples
             if i >= 10: 
